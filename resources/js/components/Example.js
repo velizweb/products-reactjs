@@ -22,12 +22,10 @@ const Example = () => {
     const handleShow = () => setShow(true);
 
     useEffect(() => {
-        (async () => {
-            const { data } = await axios.get(
-                `http://localhost:8000/api/products`
-            );
-
-            setProducts(data);
+        (() => {
+            axios.get(`http://localhost:8000/api/products`).then((response) => {
+                setProducts(response.data);
+            });
         })();
     }, []);
 
