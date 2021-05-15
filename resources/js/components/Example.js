@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import ReactDOM from "react-dom";
 import axios from "axios";
-import { Button, Modal, Form } from "react-bootstrap";
+import { Button, Modal, Form, Table } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 const Example = () => {
@@ -108,9 +108,10 @@ const Example = () => {
         setShowFormComment(true);
     };
 
-    const handleInfoComment = (product) => {
-        console.log(product);
-        setProduct(product);
+    const handleInfoComment = (pro) => {
+        //console.log(product);
+        // product.comments.map((d) => console.log(d));
+        setProduct(pro);
         setShowComments(true);
     };
 
@@ -287,23 +288,24 @@ const Example = () => {
                     </Button>
                 </Modal.Footer>
             </Modal>
+
             <Modal show={showComments} onHide={handleInfoCommentClose}>
                 <Modal.Header closeButton>
                     <Modal.Title>Comments product: {product.name} </Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    <table className="table table-striped">
+                    <Table striped bordered hover>
                         <tbody>
                             {product.comments &&
-                                product.comments.map((comment) => {
+                                product.comments.map((item) => {
                                     return (
                                         <tr>
-                                            <th scope="row">{comment}</th>
+                                            <th scope="row">{item.comment}</th>
                                         </tr>
                                     );
                                 })}
                         </tbody>
-                    </table>
+                    </Table>
                 </Modal.Body>
                 <Modal.Footer>
                     <Button
